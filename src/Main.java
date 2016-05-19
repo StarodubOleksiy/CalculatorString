@@ -26,6 +26,7 @@ public class Main {
         String someString16 = "2+2*2";
         String someString17 = "(2+2)*2";
         String someString18 = "1/2+1/4";
+        String someString19 = "(3+3)*(12-3)";
 
         System.out.println("result someString1 = "+calculator.calculateString(someString1));
         System.out.println("result someString2 = "+calculator.calculateString(someString2));
@@ -45,6 +46,7 @@ public class Main {
         System.out.println("result someString16 = "+calculator.calculateString(someString16));
         System.out.println("result someString17 = "+calculator.calculateString(someString17));
         System.out.println("result someString18 = "+calculator.calculateString(someString18));
+        System.out.println("result someString19 = "+calculator.calculateString(someString19));
 
     }
 }

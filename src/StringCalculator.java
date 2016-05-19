@@ -81,7 +81,7 @@ public class StringCalculator {
                 }
                 stack.push(solve(firstvalue, operator, stack.pop()));
             }
-        } 
+        }
         return stack.pop();
     }
 
