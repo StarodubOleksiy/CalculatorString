@@ -1,7 +1,9 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.HashSet;
+import java.io.IOException;
 
 /**
  * Created by Администратор on 18.05.16.
@@ -10,7 +12,7 @@ public class StringCalculator {
     private HashSet<Character> numbers;
     private Deque<String> stack;
 
-    private void creatingInnerStack()
+    private void creatingInnerStack()throws  IOException
     {
 
         Deque<String> anotherStack = new LinkedList<String>();
@@ -20,14 +22,14 @@ public class StringCalculator {
             if(tempvalue.equals(")"))
                 break;
             anotherStack.add(tempvalue);
-            if(stack.size()<1)
-                throw new NumberFormatException("You have forgot to put the closing bracket");
+            if(stack.size()<1 ||stack.isEmpty())
+                throw new IOException("You have forgot to put the closing bracket");
         }
         stack.push(outputResult(anotherStack));
     }
 
 
-    private String outputResult(Deque<String> stack)
+    private String outputResult(Deque<String> stack) throws IOException
     {
         if(stack.getFirst().equals("-") ) {
             stack.pop();
@@ -84,7 +86,7 @@ public class StringCalculator {
         return stack.pop();
     }
 
-    private String solve(String firstValue, String operator, String lastValue)
+    private String solve(String firstValue, String operator, String lastValue) throws IOException
     {
         String result = "";
         if(operator.equals("+")) {
@@ -103,7 +105,7 @@ public class StringCalculator {
 
             Double doubleResult = Double.parseDouble(firstValue)/Double.parseDouble(lastValue);
             result +=doubleResult;
-        } else throw new NumberFormatException("you entered the wrong operator!!!");
+        } else throw new IOException("you entered the wrong operator !!!");
         return result;
     }
 
@@ -119,7 +121,7 @@ public class StringCalculator {
 
 
 
-    public String calculateString(String input)
+    public String calculateString(String input) throws  IOException
     {
         boolean isNumber = false;
         char someArray[] = input.toCharArray();

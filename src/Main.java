@@ -1,11 +1,9 @@
-
-
-
+import java.io.IOException;
 
 public class Main {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         StringCalculator calculator = new StringCalculator();
 
        String someString1 = "7+2*(500+600*4)";
