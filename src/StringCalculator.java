@@ -1,31 +1,15 @@
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.HashSet;
 
 /**
  * Created by Администратор on 18.05.16.
  */
 public class StringCalculator {
-    ArrayList<Character> numbers = new ArrayList<Character>();
+    private HashSet<Character> numbers;
+    private Deque<String> stack;
 
-    boolean numberValidator(char digit) {
-        boolean isNumber;
-        if (numbers.contains(digit))
-            isNumber = true;
-        else
-            isNumber = false;
-        return isNumber;
-    }
-
-
-
-
-    StringCalculator() {
-        for (char i = '0'; i < '9' + 1; ++i)
-            numbers.add(i);
-        numbers.add('.');
-
-    }
     private void creatingInnerStack()
     {
 
@@ -40,7 +24,7 @@ public class StringCalculator {
                 throw new ArithmeticException();
         }
         stack.push(outputResult(anotherStack));
-     }
+    }
 
 
     private String outputResult(Deque<String> stack)
@@ -97,7 +81,7 @@ public class StringCalculator {
                 }
                 stack.push(solve(firstvalue, operator, stack.pop()));
             }
-        } //End while(1)
+        } 
         return stack.pop();
     }
 
@@ -121,7 +105,18 @@ public class StringCalculator {
         return result;
     }
 
-    private Deque<String> stack = new LinkedList<String>();
+
+
+    public StringCalculator() {
+        numbers = new HashSet<Character>();
+        stack = new LinkedList<String>();
+        for (char i = '0'; i < '9' + 1; ++i)
+            numbers.add(i);
+        numbers.add('.');
+
+    }
+
+
 
     public String calculateString(String input)
     {
