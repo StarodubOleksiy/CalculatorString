@@ -26,14 +26,23 @@ public class StringCalculator {
         numbers.add('.');
 
     }
-    private Deque<String> creatingInnerStack()
+    private void creatingInnerStack()
     {
 
-        Deque<String> anotherStack;
-        anotherStack = creatingInnerStack();
-        return anotherStack;
+        Deque<String> anotherStack = new LinkedList<String>();
+        while(true)
+        {
+            String tempvalue = stack.pop();
+            if(tempvalue.equals(")"))
+                break;
+            anotherStack.add(tempvalue);
+            if(stack.size()<1)
+                throw new ArithmeticException();
+        }
+        stack.push(outputResult(anotherStack));
+     }
 
-    }
+
     private String outputResult(Deque<String> stack)
     {
         if(stack.getFirst().equals("-") ) {
@@ -50,32 +59,11 @@ public class StringCalculator {
             if(firstvalue.equals("("))
             {
                 stack.push(operator);
-                Deque<String> anotherStack = new LinkedList<String>();
-                while(true)
-                {
-                    String tempvalue = stack.pop();
-                    if(tempvalue.equals(")"))
-                        break;
-                    anotherStack.add(tempvalue);
-                    if(stack.size()<1)
-                        throw new ArithmeticException();
-                }
-                stack.push(outputResult(anotherStack));
+                creatingInnerStack();
             } else
             if (stack.getFirst().equals("(")) {
-                Deque<String> anotherStack = new LinkedList<String>();
                 stack.pop();
-                while(true)
-                {
-                    String tempvalue = stack.pop();
-                    if(tempvalue.equals(")"))
-                        break;
-                    anotherStack.add(tempvalue);
-                    if(stack.size()<1)
-                        throw new ArithmeticException();
-                }
-
-                stack.push(outputResult(anotherStack));
+                creatingInnerStack();
                 stack.push(operator);
                 stack.push(firstvalue);
             } else {
@@ -87,18 +75,8 @@ public class StringCalculator {
                     {
                         if(stack.getFirst().equals("("))
                         {
-                            Deque<String> anotherStack = new LinkedList<String>();
                             stack.pop();
-                            while(true)
-                            {
-                                String tempvalue = stack.pop();
-                                if(tempvalue.equals(")"))
-                                    break;
-                                anotherStack.add(tempvalue);
-                                if(stack.size()<1)
-                                    throw new ArithmeticException();
-                            }
-                            stack.push(outputResult(anotherStack));
+                            creatingInnerStack();
                             stack.push(nextoperator);
                             stack.push(nextvalue);
                             stack.push(operator);
