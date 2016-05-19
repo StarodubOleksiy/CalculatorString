@@ -43,13 +43,26 @@ public class StringCalculator {
             negativeValue += value;
             stack.push(negativeValue);
         }
-
-
         while(stack.size() > 1) {
 
             String firstvalue = stack.pop();
             String operator = stack.pop();
-            if (firstvalue.equals("(")||stack.getFirst().equals("(")) {
+            if(firstvalue.equals("("))
+            {
+                stack.push(operator);
+                Deque<String> anotherStack = new LinkedList<String>();
+                while(true)
+                {
+                    String tempvalue = stack.pop();
+                    if(tempvalue.equals(")"))
+                        break;
+                    anotherStack.add(tempvalue);
+                    if(stack.size()<1)
+                        throw new ArithmeticException();
+                }
+                stack.push(outputResult(anotherStack));
+            } else
+            if (stack.getFirst().equals("(")) {
                 Deque<String> anotherStack = new LinkedList<String>();
                 stack.pop();
                 while(true)
@@ -106,7 +119,7 @@ public class StringCalculator {
                 }
                 stack.push(solve(firstvalue, operator, stack.pop()));
             }
-        }
+        } //End while(1)
         return stack.pop();
     }
 
