@@ -21,7 +21,7 @@ public class StringCalculator {
                 break;
             anotherStack.add(tempvalue);
             if(stack.size()<1)
-                throw new ArithmeticException();
+                throw new NumberFormatException("You have forgot to put the closing bracket");
         }
         stack.push(outputResult(anotherStack));
     }
@@ -37,7 +37,6 @@ public class StringCalculator {
             stack.push(negativeValue);
         }
         while(stack.size() > 1) {
-
             String firstvalue = stack.pop();
             String operator = stack.pop();
             if(firstvalue.equals("("))
@@ -51,7 +50,7 @@ public class StringCalculator {
                 stack.push(operator);
                 stack.push(firstvalue);
             } else {
-                if((operator.equals("+")||operator.equals("-"))&&stack.size()>1)
+            if((operator.equals("+")||operator.equals("-"))&&stack.size()>1)
                 {
                     String nextvalue = stack.pop();
                     String nextoperator = stack.pop();
@@ -99,9 +98,12 @@ public class StringCalculator {
             result +=doubleResult;
         }
         else if  (operator.equals("/")) {
+            if(lastValue.equals("0"))
+                throw new ArithmeticException("Divide by zero is forbidden");
+
             Double doubleResult = Double.parseDouble(firstValue)/Double.parseDouble(lastValue);
             result +=doubleResult;
-        }
+        } else throw new NumberFormatException("you entered the wrong operator!!!");
         return result;
     }
 
@@ -113,8 +115,7 @@ public class StringCalculator {
         for (char i = '0'; i < '9' + 1; ++i)
             numbers.add(i);
         numbers.add('.');
-
-    }
+      }
 
 
 

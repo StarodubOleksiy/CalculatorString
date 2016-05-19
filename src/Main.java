@@ -47,6 +47,11 @@ public class Main {
         System.out.println("result someString17 = "+calculator.calculateString(someString17));
         System.out.println("result someString18 = "+calculator.calculateString(someString18));
         System.out.println("result someString19 = "+calculator.calculateString(someString19));
+        /*int j = 1;
+        for(char i = 0; i < 255; ++i) {
+            System.out.println(j+" i = " + i);
+            j++;
+        }*/
 
     }
 }
