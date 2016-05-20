@@ -105,7 +105,11 @@ public class StringCalculator {
 
             Double doubleResult = Double.parseDouble(firstValue)/Double.parseDouble(lastValue);
             result +=doubleResult;
-        } else throw new IOException("you entered the wrong operator !!!");
+        }
+        else if  (operator.equals("^")) {
+            Double doubleResult = Math.pow(Double.parseDouble(firstValue),Double.parseDouble(lastValue));
+            result +=doubleResult;
+        }else throw new IOException("you entered the wrong operator !!!");
         return result;
     }
 

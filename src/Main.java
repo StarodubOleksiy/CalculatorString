@@ -1,11 +1,11 @@
-import java.io.IOException;
+import java.io.*;
 
 public class Main {
 
 
     public static void main(String[] args) throws IOException{
         StringCalculator calculator = new StringCalculator();
-
+     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
        String someString1 = "7+2*(500+600*4)";
         String someString2 = "8+9+2*(1000+4000)";
        String someString3 = "456.32+685.32*874.21-987.21+654.1254/0.21456";
@@ -25,6 +25,7 @@ public class Main {
         String someString17 = "(2+2)*2";
         String someString18 = "1/2+1/4";
         String someString19 = "(3+3)*(12-3)";
+        String someString20 = "2502.43+958.65+342.38";
 
         System.out.println("result someString1 = "+calculator.calculateString(someString1));
         System.out.println("result someString2 = "+calculator.calculateString(someString2));
@@ -45,6 +46,21 @@ public class Main {
         System.out.println("result someString17 = "+calculator.calculateString(someString17));
         System.out.println("result someString18 = "+calculator.calculateString(someString18));
         System.out.println("result someString19 = "+calculator.calculateString(someString19));
+        System.out.println("result someString20 = "+calculator.calculateString(someString20));
+
+
+     String input = new String();
+     do {
+      System.out.println("Enter the string which you want to calculate or exit if you want to exit the program");
+      System.out.println("Input = ");
+      input = reader.readLine().toLowerCase();
+      if(input.equals("exit"))
+       break;
+      System.out.println("result is: ");
+
+      System.out.println(input+"="+calculator.calculateString(input));
+
+     }while(true);
 
 
     }
