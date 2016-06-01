@@ -56,7 +56,7 @@ public class StringCalculator {
                 {
                     String nextvalue = stack.pop();
                     String nextoperator = stack.pop();
-                    if(nextoperator.equals("*")||nextoperator.equals("/"))
+                    if(nextoperator.equals("*")||nextoperator.equals("/")||nextoperator.equals("^"))
                     {
                         if(stack.getFirst().equals("("))
                         {
